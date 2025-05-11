@@ -342,7 +342,9 @@ class PaymentView(APIView):
     permission_classes = [IsAuthenticated]
     def post(self,request):
         amount = request.data.get('amount')
-        client = razorpay.Client(auth=('rzp_test_f2sIwDuER6xd3p', 'e8F3owJTPEGH8Rl6dJKP0PXR'))
+       
+       
+       
         order_data = {
             "amount": int(amount) * 100,  # convert to paise
             "currency": "INR",
