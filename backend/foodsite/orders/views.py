@@ -16,7 +16,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from .forms import VendorRegistrationForm
-
+import os
+from dotenv import load_dotenv
 from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -36,7 +37,7 @@ from .models import Cart, CartItem
 from .serializers import CartItemSerializer
 import razorpay
 
-
+load_dotenv()
 
 class CartView(APIView):
     permission_classes = [IsAuthenticated]
@@ -342,9 +343,10 @@ class PaymentView(APIView):
     permission_classes = [IsAuthenticated]
     def post(self,request):
         amount = request.data.get('amount')
-       
-       
-       
+    
+
+        client = razorpay.Client(auth=(os.getenv('RAZORPAY_KEY_ID'),  os.getenv('RAZORPAY_KEY_SECRET')))
+
         order_data = {
             "amount": int(amount) * 100,  # convert to paise
             "currency": "INR",
