@@ -91,9 +91,11 @@ const CheckoutPage = () => {
     });
   
     const razorData = await razorRes.json();
-  
+    const razorpayKey = process.env.REACT_APP_RAZORPAY_KEY;
+    console.log(razorpayKey);
     const options = {
      
+      
       key: process.env.REACT_APP_RAZORPAY_KEY ,// Replace with your Razorpay Key ID
       amount: razorData.amount,
       currency: "INR",
