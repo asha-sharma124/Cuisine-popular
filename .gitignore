@@ -20,7 +20,7 @@
 .env.production.local
 # .gitignore
 .env
-frontend/.env
+frontend1/.env
 
 
 npm-debug.log*
